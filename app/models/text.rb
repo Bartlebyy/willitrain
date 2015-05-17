@@ -1,11 +1,11 @@
-class User
+class Text
   attr_reader :phone_number, :text
 
-  def self.[](params)
+  def self.[] params
     new(params[:From], params[:Body])
   end
 
-  def initialize(phone_number, text)
+  def initialize phone_number, text
     @phone_number, @text = phone_number, text
   end
 
@@ -22,6 +22,6 @@ class User
   end
 
   def weather_data
-    "Please pretend this is an hourly report of today's weather in #{ text }'s area"
+    Wunderground[text].run
   end
 end
