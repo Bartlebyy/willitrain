@@ -15,8 +15,7 @@ class Wunderground
   def run
     open("http://api.wunderground.com/api/#{ENV['WUNDERGROUND_KEY']}/hourly/q/#{zipcode}.json") do |f|
       json_string = f.read
-      parsed_json = JSON.parse(json_string)
-      hourly_forecast = parsed_json['hourly_forecast']
+      hourly_forecast = JSON.parse(json_string)['hourly_forecast']
       report(hourly_forecast)
     end
   end

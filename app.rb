@@ -15,7 +15,7 @@ Dir[File.join(File.dirname(__FILE__), 'app', '**', '*.rb')].each do |file|
   also_reload file
 end
 
-get '/test' do
+get '/' do
   # params = { From: "11234567890", Body: "30306" } #for testing purposes
   if params.any?
     twiml = Twilio::TwiML::Response.new do |r|
@@ -23,6 +23,6 @@ get '/test' do
     end
     twiml.text
   else
-    "Thanks for visiting us online. Now get off the web and text '#{ENV['TWILIO_NUMBER']}'. Cool beans."
+    "Thanks for visiting us online. Now get off the web and text #{ENV['TWILIO_NUMBER']}. Cool beans."
   end
 end
