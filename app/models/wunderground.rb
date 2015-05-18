@@ -32,7 +32,7 @@ class Wunderground
       rain = data["pop"] + "%"
       condition = data["icon"]
 
-      final_report << "#{ meridian_hour }: #{ temp } | #{ rain } | "
+      final_report << "#{ meridian_hour }: #{ temp } | #{ rain }"
     end
     final_report.join("\n")
   end
