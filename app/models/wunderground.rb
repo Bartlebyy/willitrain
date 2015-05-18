@@ -21,7 +21,7 @@ class Wunderground
   end
 
   def report hourly_forecast, num_of_hours = 10
-    final_report = []
+    final_report = [""]
 
     (0...num_of_hours).map do |n| 
       data = hourly_forecast[n]
@@ -38,9 +38,7 @@ class Wunderground
   end
 
   def convert_to_meridian military_hour
-    if military_hour == 0
-      "12"
-    elsif military_hour == 12
+    if military_hour == (0 || 12)
       "12"
     elsif military_hour < 12
       military_hour.to_s 
