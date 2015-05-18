@@ -27,25 +27,25 @@ class Wunderground
       data = hourly_forecast[n]
 
       hour = data["FCTTIME"]["hour"]
-      meridian_hour = convert_to_meridian(hour)
+      meridian_hour = convert_to_meridian(hour.to_i)
       temp = data["temp"]["english"] + "°"
       rain = data["pop"] + "%"
       condition = data["icon"]
 
-      final_report << "#{ meridian_hour }: #{ temp } | #{ rain }"
+      final_report << "#{ meridian_hour } #{ temp } #{ rain }"
     end
     final_report.join("\n")
   end
 
   def convert_to_meridian military_hour
-    if military_hour == 24
+    if military_hour == 0
       "12a"
     elsif military_hour == 12
       "12p"
     elsif military_hour < 12
-      military_hour + "a"
+      military_hour.to_s + "a"
     else
-      military_hour - 12 + "p"
+      (military_hour - 12).to_s + "p"
     end
   end
 
