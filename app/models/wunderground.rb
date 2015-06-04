@@ -38,9 +38,9 @@ class Wunderground
   end
 
   def convert_to_meridian military_hour
-    if military_hour == (0 || 12)
+    if military_hour == 0
       "12"
-    elsif military_hour < 12
+    elsif military_hour <= 12
       military_hour.to_s 
     else
       (military_hour - 12).to_s
