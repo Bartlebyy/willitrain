@@ -12,20 +12,22 @@ class Wunderground
     @zipcode = zipcode
   end
 
-  def run
+  def generate_hourly_forecast
+    report(hourly_data)
+  end
+
+  def hourly_data
     open("http://api.wunderground.com/api/#{ ENV['WUNDERGROUND_KEY'] }/hourly/q/#{ zipcode }.json") do |f|
       json_string = f.read
       hourly_forecast = JSON.parse(json_string)['hourly_forecast']
-      report(hourly_forecast)
     end
   end
 
-  def report hourly_forecast, num_of_hours = 10
+  def report hourly_forecast, num_of_hours = 12
     final_report = [""]
 
     (0...num_of_hours).map do |n| 
       data = hourly_forecast[n]
-
       hour = data["FCTTIME"]["hour"]
       meridian_hour = convert_to_meridian(hour.to_i).rjust(2, '0')
       temp = data["temp"]["english"] + "°"

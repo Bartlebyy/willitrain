@@ -22,6 +22,6 @@ class Text
   end
 
   def weather_data
-    Wunderground[text].run
+    Wunderground[text].generate_hourly_forecast
   end
 end

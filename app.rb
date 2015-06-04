@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
-require 'dotenv'
-Dotenv.load
 require 'sinatra/activerecord'
 require 'sinatra/reloader'
+require 'dotenv'
+Dotenv.load
 
 configure :development, :test do
   require 'pry'
